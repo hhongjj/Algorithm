@@ -38,7 +38,7 @@ for i in range(N):
 # 처음엔 함수로 구현을 해야하나 고민함
 # push일 때 맨 앞에 넣어야 하는 줄 알았음.
 # 시간 초과 뜸. -> 덱 씀
-
+# 10845 큐는 이렇게 했으면 가능.
 # import sys 
 # input = sys.stdin.readline
 

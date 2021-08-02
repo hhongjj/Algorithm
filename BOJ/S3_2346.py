@@ -21,6 +21,9 @@ for i in range(N):
 
 print(*ans)
 
+
+
+
 # rotate(n) 함수를 통해 deque를 회전시킴.
 # n이 양수일 때 : 시계 방향으로 n칸 만큼 회전
 # n이 음수일 때 : 반시계 방향으로 n칸 만큼 회전

@@ -20,7 +20,7 @@ print(deq.popleft())
 
 
 
-# queue 가 deque 보다 느림!!
+######### queue 가 deque 보다 느림!!
 #import sys
 # from queue import Queue
 
