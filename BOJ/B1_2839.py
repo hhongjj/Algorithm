@@ -6,22 +6,29 @@ input = sys.stdin.readline
 
 N = int(input())
 
-cnt = 0
 while 1:
-    # if N < 3:
-    #     print(-1)
-    #     break
-    if N >= 5:
-        N -= 5
-        cnt += 1
-    elif N >= 3:
-        N -= 3
-        cnt += 1
-    elif N == 0:
+    cnt = 0
+    if N % 5 == 0:
+        print(N // 5)
+        break
+    elif (N % 5) % 3 == 0:
+        cnt += N // 5
+        cnt += (N % 5) // 3
+        print(cnt)
+        break
+    elif (N % 3) % 5 == 0:
+        cnt += N // 3
+        cnt += (N % 3) // 5
         print(cnt)
         break
     else:
         print(-1)
         break
 
-# print(cnt)
+
+
+
+
+
+
+
