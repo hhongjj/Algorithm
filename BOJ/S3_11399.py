@@ -1,5 +1,5 @@
 # 11399 ATM
-#
+# 그리디 알고리즘 정렬
 
 import sys
 input = sys.stdin.readline
