@@ -5,30 +5,33 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-
-while 1:
-    cnt = 0
+run = 1
+min_cnt = 0
+while run:
     if N % 5 == 0:
         print(N // 5)
         break
     elif (N % 5) % 3 == 0:
-        cnt += N // 5
-        cnt += (N % 5) // 3
-        print(cnt)
-        break
-    elif (N % 3) % 5 == 0:
-        cnt += N // 3
-        cnt += (N % 3) // 5
-        print(cnt)
+        print (N // 5 + (N % 5) // 3)
         break
     else:
-        print(-1)
+        cnt = N // 5
+        for i in range(cnt-1,0,-1):
+            if (N - (5*i)) % 3 == 0:
+                min_cnt = i+ ((N-(5*i))//3)
+                run = 0
+                break
+        if run == 1:
+            min_cnt = -1
+            break
+    if N % 3 == 0:
+        if min_cnt > N // 3:
+            min_cnt = N // 3
+            print(min_cnt)
+            break
+        else:
+            print(min_cnt)
+            break
+    else:
+        print(min_cnt)
         break
-
-
-
-
-
-
-
-
