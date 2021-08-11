@@ -2,7 +2,6 @@
 # 그래프 이론, 그래프 탐색, 너비 우선 탐색, 깊이 우선 탐색
 
 import sys
-from collections import deque
 input = sys.stdin.readline
 
 M, N, K = map(int, input().split())
@@ -13,6 +12,7 @@ for case in range(K):
     for i in range(M-d, M-b):
         for j in range(a, c):
             domain[i][j] = 1
+
 K_list =[]
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
@@ -28,12 +28,13 @@ for i in range(M):
             for d in range(4):
                 x = p + dx[d]
                 y = q + dy[d]
-                if 0 <= x < N and 0 <= y < M and not domain[x][y] and not visited[x][y]:
+                if 0 <= x < M and 0 <= y < N and not domain[x][y] and not visited[x][y]:
                     stack.append([x,y])
                     visited[x][y] = 1
                     w += 1
         K_list.append(w)
-
-print(K_list)
+        
+print(len(K_list))
+print(*sorted(K_list))
 
 
