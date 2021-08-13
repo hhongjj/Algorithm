@@ -9,8 +9,8 @@ W = [list(map(int, input().split())) for _ in range(N)]
 visited = [0] * N
 
 
-def back(visited: list, s, sum_w: list):
-    global N, W, start
+def back(visited: list, s):
+    global N, W, start, sum_w
     if len(sum_w) == 3:
         print(s, start)
         sum_w.append(W[s][start])
@@ -23,7 +23,7 @@ def back(visited: list, s, sum_w: list):
             continue
         visited[i] = 1
         sum_w.append(W[s][i])
-        back(visited, i, sum_w)
+        back(visited, i)
         visited[i] = 0
 
 total = []
@@ -32,7 +32,7 @@ for s in range(N):
     sum_w = []
     start = s
     visited[start] = 1
-    back(visited, s, sum_w)
+    back(visited, s)
     print(sum_w)
 
 
