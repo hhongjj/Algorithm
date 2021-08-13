@@ -1,39 +1,92 @@
 # S2 10971 외판원 순회 2
-
+# 아직 X
 import sys 
 input = sys.stdin.readline
 
 N = int(input())
 W = [list(map(int, input().split())) for _ in range(N)]
 
-visited = [0] * N
-
-
-def back(visited: list, s):
-    global N, W, start, sum_w
-    if len(sum_w) == 3:
-        print(s, start)
-        sum_w.append(W[s][start])
-        total.append(sum(sum_w))
-        return
-    for i in range(s, N):
-        if visited[i]:
-            continue
-        if not W[s][i]:
-            continue
-        visited[i] = 1
-        sum_w.append(W[s][i])
-        back(visited, i)
-        visited[i] = 0
-
+res = []
+visit = [0] * (N+1)
 total = []
+min_n = 10000000
+def back(idx, N):
+    global min_n
+    if idx == N:
+        sum_w = 0
+        for i in range(1, N):
+            if W[res[i-1]][res[i]] == 0:
+                continue
+            sum_w += W[res[i-1]][res[i]]
+        sum_w += W[res[-1]][res[0]]
+        if min_n > sum_w:
+            min_n = sum_w
+        return
+    for i in range(N):
+        if visit[i]:
+            continue
+        visit[i] = 1
+        res.append(i)
+        back(idx+1, N)
+        visit[i] = 0
+        res.pop()
 
-for s in range(N):
-    sum_w = []
-    start = s
-    visited[start] = 1
-    back(visited, s)
-    print(sum_w)
+back(0, N)
+print(min_n)
+
+# def back(idx, N):
+#     global min_n
+#     if idx == N:
+#         sum_w = 0
+#         for i in range(1, N):
+#             if W[res[i-1]][res[i]] == 0:
+#                 continue
+#             sum_w += W[res[i-1]][res[i]]
+#         sum_w += W[res[-1]][res[0]]
+#         if min_n > sum_w:
+#             min_n = sum_w
+#         return
+#     for i in range(N):
+#         if visit[i]:
+#             continue
+#         visit[i] = 1
+#         res.append(i)
+#         back(idx+1, N)
+#         visit[i] = 0
+#         res.pop()
+#
+# back(0, N)
+# print(min_n)
+
+
+
+#
+# visited = [0] * N
+# result = []
+
+# def back(visited: list, s):
+#     global N, W, sum_w
+#     if len(sum_w) == 3:
+#         sum_w.append(W[s][result[0]])
+#         total.append(sum(sum_w))
+#         return
+#     for i in range(s, N):
+#         if visited[i]:
+#             continue
+#         if not W[s][i]:
+#             continue
+#         visited[i] = 1
+#         sum_w.append(W[s][i])
+#         result.append(i)
+#         back(visited, i)
+#         sum_w.pop()
+#         result.pop()
+#         visited[i] = 0
+#
+# total = []
+# sum_w = []
+# back(visited, 0)
+# print(total)
 
 
 
