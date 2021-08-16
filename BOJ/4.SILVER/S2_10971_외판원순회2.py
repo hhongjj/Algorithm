@@ -9,8 +9,9 @@ W = [list(map(int, input().split())) for _ in range(N)]
 res = []
 visit = [0] * (N+1)
 total = []
-min_n = 10000000
-def back(idx, N):
+min_n = 100000000             #W합으로 하기
+
+def back(start, idx, N):
     global min_n
     if idx == N:
         sum_w = 0
@@ -27,7 +28,7 @@ def back(idx, N):
             continue
         visit[i] = 1
         res.append(i)
-        back(idx+1, N)
+        back(i, N)
         visit[i] = 0
         res.pop()
 
