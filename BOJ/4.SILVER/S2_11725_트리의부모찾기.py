@@ -30,7 +30,6 @@ def find_num(start):
                 que.append(i)
                 visit[i] = 1
 
-
 find_num(1)
 for i in range(2, len(result)):
     print(result[i])

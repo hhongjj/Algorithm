@@ -26,3 +26,5 @@ for tc in range(1, T+1):
     check = 0
     dfs(S, G)
     print('#{} {}'.format(tc, check))
+
+#우선

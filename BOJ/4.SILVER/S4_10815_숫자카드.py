@@ -12,7 +12,6 @@ sang = list(map(int, input().split()))
 
 card = sorted(card)
 
-
 def bin(start, last, word):
     mid = (start+last) // 2
     if last - start <= 1:
