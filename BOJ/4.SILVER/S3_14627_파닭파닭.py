@@ -11,7 +11,6 @@ s, e = 1, max(pa)
 while s <= e:
     cnt = 0
     mid = (s + e) // 2
-    tmp = pa[:]
     for i in range(S):
         cnt += pa[i] // mid
     if cnt < C:
