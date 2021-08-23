@@ -1,6 +1,6 @@
 # D4 1223 계산기2
 
-for tc in range(1, 11):
+for tc in range(1,11):
     n = int(input())
     lst = list(input())
     num = []
@@ -8,15 +8,13 @@ for tc in range(1, 11):
     sum_lst = 0
     for i in lst:
         if i == '+':
-            if not stack or stack[-1] != '*':
-                stack.append(i)
-            else:
+            if stack and stack[-1] == '*':
                 n = 0
                 while stack:
                     stack.pop()
                     n += 1
                 X = 1
-                for j in range(n):
+                for j in range(n+1):
                     X *= num.pop()
                 sum_lst += X
         elif i == '*':
@@ -29,7 +27,7 @@ for tc in range(1, 11):
             stack.pop()
             n += 1
         X = 1
-        for _ in range(n):
+        for _ in range(n+1):
             X *= num.pop()
         sum_lst += X
     sum_lst += sum(num)
