@@ -14,7 +14,7 @@ def knapsack():
                 #  pack[i-1][K-cargo[i-1][0] : 무게 c에서 인덱스 i-1의 무게를 빼고 남은 무게에 해당되는 곳의 가치값을 더함 vs 배낭 갯수는 하나 적어도 최대값일 수도 있으니 비교
             else:
                 pack[i].append(pack[i-1][c])
-    return pack[-1][-1]
+    return pack[N][K]
 
 
 N, K = map(int, input().split())
