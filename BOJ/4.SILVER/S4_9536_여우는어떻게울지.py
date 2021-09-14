@@ -1,6 +1,7 @@
 # S4 9536 여우는 어떻게 울지?
 # https://www.acmicpc.net/problem/9536
 # 문자열, 파싱
+# 틀렸음.. 왤까??
 
 T = int(input())
 voice = input().split(' ')
