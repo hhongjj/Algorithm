@@ -24,7 +24,7 @@ if 'C' not in symbol:
     print('NO OUTPUT')
     run = 0
 
-b = 0
+b = 'b'
 while symbol and run:
     a = num.popleft()
     if num:                   # 만약 숫자가 1개가 남았다면 지나감
@@ -44,6 +44,11 @@ while symbol and run:
     else:
         res = a
         print(res, end=' ')
-        if b:   # b값에 숫자가 있다면 혹시 그다음 계산을 위해 다시 집어 넣어 준다.
+        if b != 'b':   # b값에 숫자가 있다면 혹시 그다음 계산을 위해 다시 집어 넣어 준다.
             num.appendleft(b)
     num.appendleft(res)
+
+
+
+# b값을 처리하는 과정에 있어서 자꾸 틀렸음.
+# b에는 어떤 숫자를 넣든 해당될 수가 있어서 아예 문자를 넣고 해당되면 숫자로 바꿨음.

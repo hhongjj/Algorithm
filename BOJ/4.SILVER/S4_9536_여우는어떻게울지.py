@@ -1,22 +1,29 @@
 # S4 9536 여우는 어떻게 울지?
 # https://www.acmicpc.net/problem/9536
 # 문자열, 파싱
-# 틀렸음.. 왤까??
 
 T = int(input())
-voice = input().split(' ')
-sound = []
+for _ in range(T):
+    voice = input().split(' ')
+    sound = []        # 다른 동물의 울음소리
 
-while 1:
-    animal = input().split(' goes ')  # 'goes'를 기준으로 잘라서 입력받는다.
+    while True:
+        animal = input().split(' goes ')   # goes 를 기준으로 자른다.
 
-    if 'what does the fox say?' in animal:  # 질문이 주어지면 break
-        break
-    else:     # 동물의 울음 소리를 저장한다.
-        sound.append(animal[1])
+        if 'what does the fox say?' in animal:  # 질문이 들어왔으면 break
+            break
+        else:
+            sound.append(animal[1])   # 울음 소리 저장
 
+    for v in voice:
+        if v not in sound:    # 다른 동물의 울음소리가 아니라면 print
+            print(v, end=' ')
 
-for v in voice:
-    if v not in sound:    # 다른 동물의 울음소리가 아니라면 print
-        print(v, end=' ')
+# 혹시나 싶어서 뒤에 공백 제거
+# for s in sound:
+#     for _ in range(voice.count(s)):
+#         voice.remove(s)
+#
+# print(*voice)
 
+# 테스트 케이스 생각을 안해서 엄청 틀림.. 문제 제대로 읽어보기!
