@@ -29,12 +29,9 @@ while bomb in lst:
                 i += 1
         else:
             i += 1
-    lst = list(lst)
     while stack:
         idx = stack.pop()
-        for b in range(len(bomb)-1, -1, -1):
-            lst.pop(idx+b)
-    lst = ''.join(lst)
+        lst = lst[0:idx] + lst[idx + len(bomb):]
 
 if len(lst):
     print(lst)
