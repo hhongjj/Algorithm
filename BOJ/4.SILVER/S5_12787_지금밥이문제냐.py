@@ -2,6 +2,7 @@
 # https://www.acmicpc.net/problem/12787
 # 구현, 문자열, 파싱
 
+# int는 베이스가 기본 십임 그래서 int('1001', 2) - 하면 이진수인걸 10진수로바꿔줌
 def change_to_integer(ip):
     ip = ip.split('.')
     x =''

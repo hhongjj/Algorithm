@@ -2,7 +2,7 @@
 # https://www.acmicpc.net/problem/17214
 # 수학, 문자열, 피싱, 미적분학
 # 답이 다 맞는 것 같은데 뭐가 문제일까.. 하지만 너무 복잡하니까 간단하게 하는 방법을 찾아보기..
-
+## 0 일경우 W 만 출력
 # poly = input().split('x')
 #
 # if len(poly[0]) == 0:

@@ -23,15 +23,15 @@ while bomb in lst:
                     break
                 j += 1
             if run:
-                stack.append(i)
-                i += len(bomb)
+                # stack.append(i)
+                lst = lst[0:i] + lst[i+len(bomb):]
             else:
                 i += 1
         else:
             i += 1
-    while stack:
-        idx = stack.pop()
-        lst = lst[0:idx] + lst[idx + len(bomb):]
+    # while stack:
+    #     idx = stack.pop()
+    #     lst = lst[0:idx] + lst[idx + len(bomb):]
 
 if len(lst):
     print(lst)
