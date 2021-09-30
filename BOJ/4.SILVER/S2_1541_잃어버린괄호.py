@@ -1,6 +1,7 @@
 # S2 1541 잃어버린 괄호
 # https://www.acmicpc.net/problem/1541
 # 수학, 문자열, 그리디 알고리즘, 피싱
+
 from collections import deque
 
 lst = input()
@@ -14,7 +15,7 @@ for i in lst:
             stack.append(i)
     else:
         stack.append(i)
-# 연산자를 기준으로 연산자와 함께 stack에 넣는다.  deque(['55', '-50', '+40'])
+# 연산자를 기준으로 연산자와 함께 stack 에 넣는다.  deque(['55', '-50', '+40'])
 
 result = int(stack.popleft())
 minus = 0
@@ -32,5 +33,5 @@ while stack:
     else:                             # -가 바로 앞에 없다면 그냥 result에 더해준다.
         result += int(num[1:])
 
-# result값과 minus 값을 빼준다.
+# result 값과 minus 값을 빼준다.
 print(result-minus)

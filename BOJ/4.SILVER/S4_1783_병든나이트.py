@@ -62,16 +62,19 @@ def check_big():
 
 
 N, M = map(int, input().split())
-if N >= M * 2:
-    N = M * 2
-knight = [[0]*M for _ in range(N)]
+
+
 dc = [1, 1, 2, 2]
 dr = [2, -2, 1, -1]
 
 if M <= 4:
+    N = 2 * M
+    knight = [[0] * M for _ in range(N)]
     res = check_small()
     print(res)
 else:
+    N = 3
+    knight = [[0] * M for _ in range(N)]
     res = check_big()
     print(res)
 
