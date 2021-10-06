@@ -6,7 +6,7 @@ from collections import deque, OrderedDict
 
 def find_pos(lst):
     check = OrderedDict()
-    while lst:
+    while lst:             # key : 좋아하는 학생 근처에 앉을 수 있는 자리, value: 좋아하는 학생 인접 수
         r, c = lst.popleft()
         for d in range(4):
             nr, nc = r + dr[d], c + dc[d]
@@ -19,16 +19,22 @@ def find_pos(lst):
     # value 값으로 내림차순하고, nr값, nc 값 순으로 오름차순해줌.
     sort_check = sorted(check.items(), key=lambda x: (-x[1], x[0][0], x[0][1]))
     num = 0
-    tmp = sort_check[0][1]
-    for s in range(len(sort_check)):
+    if len(sort_check) == 0:    # 만약 좋아하는 학생 근처에 앉을 수 없다면 빈자리를 정렬해서 sort_check를 만들어줌.
+        for i in range(N):
+            for j in range(N):
+                if pos[i][j] == 0:
+                    check[(i, j)] = 1
+    sort_check = sorted(check.items(), key=lambda x: (-x[1], x[0][0], x[0][1]))
+    tmp = sort_check[0][1]    # 좋아하는 학생의 인접 수
+    for s in range(len(sort_check)):   # 조건 1번을 만족하는 칸이 여러개라면, 그 칸이 몇개인지
         if tmp == sort_check[s][1]:
             num += 1
         else:
             break
-    if num == 1:
+    if num == 1:                    # 조건 1
         return sort_check[0][0]
-    else:
-        empty = OrderedDict()
+    else:                           # 조건 2, 3
+        empty = OrderedDict()       # 조건 1을 만족하는 칸(key) 중에 인접한 칸 중에서 비어있는 칸이 몇개(value)인지 계산.
         for k in range(num):
             temp = 0
             r, c = sort_check[k][0]
@@ -39,25 +45,9 @@ def find_pos(lst):
                     continue
                 temp += 1
             empty[(sort_check[k][0])] = temp
-        sort_empty = sorted(empty.items(), key=lambda x: (-x[1], x[0][0], x[0][1]))
-        return sort_empty[0][0]
+        sort_empty = sorted(empty.items(), key=lambda x: (-x[1], x[0][0], x[0][1]))   # 빈칸은 내림차순, 위치는 오름차순으로 정렬
+        return sort_empty[0][0]    # 빈칸이 제일 많고, 같다면 행의 번호가 가장작고 열도 작은 것.
 
-def empty_pos(num):
-    empty = OrderedDict()
-    for i in range(N):
-        for j in range(N):
-            if pos[i][j]:
-                continue
-            temp = 0
-            for d in range(4):
-                nr = i + dr[d]
-                nc = j + dc[d]
-                if nr < 0 or nr >= N or nc < 0 or nc >= N or pos[nr][nc]:
-                    continue
-                temp += 1
-            empty[(i, j)] = temp
-    sort_empty = sorted(empty.items(), key=lambda x: (-x[1], x[0][0], x[0][1]))
-    return sort_empty[0][0]
 
 N = int(input())
 
@@ -73,7 +63,11 @@ pos = [[0]*N for _ in range(N)]   # 학생 자리 배치
 
 i = 0
 sn = order[i]
-sr, sc = N//2, N//2
+# if N % 2:
+#     sr, sc = N//2, N//2
+# else:
+#     sr, sc = N//2 - 1, N//2 - 1
+sr, sc = 1, 1
 pos[sr][sc] = sn             # 첫번째 학생은 가장 중앙에 앉는다.
 student = {sn: (sr, sc)}     # 학생번호 : 학생이 앉은 위치
 i += 1
@@ -86,16 +80,14 @@ while i < N*N:
     for j in love[nn]:         # 좋아하는 학생의 번호 리스트
         if j in student:
             stack.append(student[j])
-    if stack:
-        x, y = find_pos(stack)     # 학생이 어디에 앉아야 하는지 구하는 함수
-    else:
-        x, y = empty_pos(nn)
+    x, y = find_pos(stack)     # 학생이 어디에 앉아야 하는지 구하는 함수
     pos[x][y] = nn
     student[nn] = (x, y)       # 자리에 앉았으므로 추가시켜줌.
     i += 1
-print(pos)
+
+# 만족도 구하기
 sat = 0
-for i in range(N):
+for i in range(N):   # pos 의 (0, 0) 부터 자기 위치에 인접해있는 위치가 만약 자신이 좋아하는 학생의 위치 리스트에 존재한다면 카운트 해줌.
     for j in range(N):
         cnt = 0
         tmp = []
@@ -117,19 +109,6 @@ for i in range(N):
             sat += 10
         elif cnt == 1:
             sat += 1
+
 print(sat)
-
-
-
-# 3
-# 1 2 5 1 7
-# 2 1 9 4 5
-# 3 4 5 6 7
-# 4 7 8 9 6
-# 5 9 8 3 2
-# 6 4 8 1 2
-# 7 3 8 2 4
-# 8 1 2 3 4
-# 9 4 5 7 8
-# 엄청 오래 걸림?..
 
