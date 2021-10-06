@@ -63,12 +63,8 @@ pos = [[0]*N for _ in range(N)]   # 학생 자리 배치
 
 i = 0
 sn = order[i]
-# if N % 2:
-#     sr, sc = N//2, N//2
-# else:
-#     sr, sc = N//2 - 1, N//2 - 1
 sr, sc = 1, 1
-pos[sr][sc] = sn             # 첫번째 학생은 가장 중앙에 앉는다.
+pos[sr][sc] = sn             # 첫번째 학생은 가장 무조건 (1, 1) 자리에 앉음 ( 문제 기준으론 (2, 2))
 student = {sn: (sr, sc)}     # 학생번호 : 학생이 앉은 위치
 i += 1
 dr = [-1, 0, 1, 0]
