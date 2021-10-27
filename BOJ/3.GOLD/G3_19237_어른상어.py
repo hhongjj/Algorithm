@@ -61,7 +61,7 @@ def move_shark():
 
 
 def change_smell():
-    global stack      # 왜 글로벌?
+    global stack
     stack = list(set(stack))                             # set 을 이용해 다시 자기 냄새로 이동했던 경우를 빼줌.
     delete = []
     for s in range(len(stack)):

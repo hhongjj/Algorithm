@@ -1,6 +1,7 @@
 # G4 1043 거짓말
 # https://www.acmicpc.net/problem/1043
 # 그래프 이론, 자료 구조, 그래프 탐색, 분리집합
+# 아직 미완성
 from collections import deque
 import sys
 input = sys.stdin.readline
