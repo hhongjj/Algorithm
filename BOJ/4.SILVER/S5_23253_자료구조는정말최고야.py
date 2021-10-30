@@ -14,6 +14,7 @@ for _ in range(M):
     temp_sort = sorted(temp, reverse=True)             # 내림차순 한 다음 정렬 전과 다르면 뽑을 수 없는 것이므로 False 해줌
     if temp != temp_sort:
         flag = False
+        break
 if flag:
     print('Yes')
 else:
@@ -55,3 +56,7 @@ else:
 
 # 그냥 제일 위에 있는거에서 순서의 책을 찾고 있으면 그다음 그 위치의 더미에서 제일 위에 책 가지고 오고
 # 뽑을 수 없으면 false 임.
+
+# 아마 그냥 받을 때 sort 말고 앞에 값이 뒤에 값보다 큰 지 확인하고 break 해서
+# 출력하는게 문제 의도 인듯.
+# stack 으로 풀 수 있긴함. 나는 너무 많이 돌고 책 번호 만큼 돌게 끔 만들어 줄 수 있을듯
