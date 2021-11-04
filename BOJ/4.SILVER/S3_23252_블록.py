@@ -1,22 +1,23 @@
 # S3 23252 블록
 # https://www.acmicpc.net/problem/23252
 # 많은 조건 분기
+import sys
+input = sys.stdin.readline
 
 T = int(input())
 for _ in range(T):
     lst = list(map(int, input().split()))
-    tmp = lst[:]    # 원본 보존
-    if not tmp[0] and not tmp[1] and not tmp[2]:
+    if not lst[0] and not lst[1] and not lst[2]:
         print('No')
         continue
-    if tmp[0] >= tmp[2]:  # 1개는 무조건 3개보다 크거나 같아야함.
-        if not tmp[1] % 2 and not (tmp[0]-tmp[2]) % 2:  # 2개도 짝수이면서 1개 - 3개도 짝수.
+    if lst[0] >= lst[2]:  # 1개는 무조건 3개보다 크거나 같아야함.
+        if not lst[1] % 2 and not (lst[0]-lst[2]) % 2:  # 2개도 짝수이면서 1개 - 3개도 짝수.
             print('Yes')
             continue
-        if tmp[1] % 2 and tmp[0] > tmp[2] and not (tmp[0]-tmp[2]) % 2:  # 2개가 홀수이지만, 1개가 짝수개로 남아있음.
+        if lst[1] % 2 and lst[0] > lst[2] and not (lst[0]-lst[2]) % 2:  # 2개가 홀수이지만, 1개가 짝수개로 남아있음.
             print('Yes')
             continue
-        if tmp[1] % 2 and tmp[2] and not (tmp[0]-tmp[2]) % 2:  # 2개가 홀수개이지만 , 1개와 3개가 있어 (1 + 2 + 3)을 만들 수 있음. (3개가 있고, 1개 - 3개도 짝수)
+        if lst[1] % 2 and lst[2] and not (lst[0]-lst[2]) % 2:  # 2개가 홀수개이지만 , 1개와 3개가 있어 (1 + 2 + 3)을 만들 수 있음. (3개가 있고, 1개 - 3개도 짝수)
             print('Yes')
             continue
     print('No')
