@@ -1,55 +1,55 @@
 # G4 23254 나는 기말고사형 인간이야
 # https://www.acmicpc.net/problem/23254
 # 자료 구조, 그리디 알고리즘, 우선순위 큐
-# 100점은 뺴고 아닌거만 다시 push하자
-from collections import deque
-import sys
-input = sys.stdin.readline
+# 그냥 아예 다시 풀자!!
 
-N, M = map(int, input().split())
-a = list(map(int, input().split()))  # 점수
-b = list(map(int, input().split()))  # 한시간마다 오르는 점수
+# from collections import deque
+# import sys
+# input = sys.stdin.readline
+#
+# N, M = map(int, input().split())
+# a = list(map(int, input().split()))  # 점수
+# b = list(map(int, input().split()))  # 한시간마다 오르는 점수
+#
+# subject = []
+# for i in range(M):
+#     subject.append([a[i], b[i]])
+#
+# subject = deque(sorted(subject, key=lambda x: x[1]))
+#
+# time, idx, res, turn = 0, 0, 0, 0
+# while time < 24 * N and subject:
+#     sub, score = subject.pop()
+#     time_tmp = (100 - sub) // score  # 최대한 100점 가까이 만들기 위해 필요한 시간
+#     if time + time_tmp > 24 * N:  # 시간 초과라면 time_tmp 를 남은 시간으로 바꿔준다.
+#         time_tmp = 24 * N - time
+#     sub += time_tmp * score
+#     # 만약에 오를 점수를 다 받진 못하더라도 100점 까지 남은 점수가 그 다음 과목에서 오를 점수보다 같거나 높으면 100점을 채우고 시간을 높여준다.
+#     # [[98, 3], [50, 1]] 일 경우 98을 100으로 만들어 버린다.
+#     if subject and 100 - sub >= subject[-1][1] and time + time_tmp < 24 * N:
+#         sub = 100
+#         time_tmp += 1
+#     if turn:            # 한 바퀴 다돌고 100점 만들어줌.
+#         sub = 100
+#         time_tmp = 1
+#         res += sub
+#     else:
+#         if sub == 100:
+#             res += sub
+#         else:
+#             subject.appendleft([sub, score])
+#     time += time_tmp
+#     if idx == M - 1:
+#         turn += 1
+#         subject = deque(sorted(subject, key=lambda x: x[0], reverse=True))
+#
+#     idx = (idx + 1) % M
+#
+# if subject:
+#     for i in range(len(subject)):
+#         res += subject[i][0]
+# print(res)
 
-subject = []
-for i in range(M):
-    subject.append([a[i], b[i]])
-
-subject = deque(sorted(subject, key=lambda x: x[1], reverse=True))
-time, idx, res, turn = 0, 0, 0, 0
-while time < 24 * N:
-    time_tmp = (100 - subject[idx][0]) // subject[idx][1]  # 최대한 100점 가까이 만들기 위해 필요한 시간
-    if time + time_tmp > 24 * N:  # 시간 초과라면 time_tmp 를 남은 시간으로 바꿔준다.
-        time_tmp = 24 * N - time
-    subject[idx][0] += time_tmp * subject[idx][1]
-    # 만약에 오를 점수를 다 받진 못하더라도 100점 까지 남은 점수가 그 다음 과목에서 오를 점수보다 같거나 높으면 100점을 채우고 시간을 높여준다.
-    # [[98, 3], [50, 1]] 일 경우 98을 100으로 만들어 버린다.
-    if idx + 1 < M and 100 - subject[idx][0] >= subject[idx + 1][1] and time + time_tmp < 24 * N:
-        subject[idx][0] = 100
-        time_tmp += 1
-    if turn and subject[idx][0] != 100:              # 한 바퀴 다돌고 100점 만들어줌.
-        res -= subject[idx][0]
-        subject[idx][0] = 100
-        time_tmp = 1
-        res += subject[idx][0]
-    elif not turn:
-        res += subject[idx][0]
-
-    if res == 100 * M:
-        break
-    time += time_tmp
-    if idx == M - 1:
-        turn += 1
-        subject.sort(key=lambda x: x[0], reverse=True)
-    idx = (idx + 1) % M
-
-result = 0
-for i in range(M):
-    result += subject[i][0]
-print(result)
-
-# 3 5
-# 45 50 69 80 25
-# 3 5 7 10 5
 
 # def change(lst_a, lst_b):
 #     global time
