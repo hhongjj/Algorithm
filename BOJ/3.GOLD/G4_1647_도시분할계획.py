@@ -18,21 +18,40 @@ def find(v):
     return parents[v]
 
 
-def union(a, b, w):
-    global edge_cnt, weight
-    a, b = find(a), find(b)
-    if a != b:
-        edge_cnt += 1
-        weight += w
-        if a < b:
-            parents[b] = a
-        else:
-            parents[a] = b
+def union(a, b):
+    if a < b:
+        parents[b] = a
+    else:
+        parents[a] = b
 
 
 edge_cnt, weight = 0, 0
 for e in edge:
-    union(e[0], e[1], e[2])
+    a, b = find(e[0]), find(e[1])
+    if a == b:
+        continue
+    union(a, b)
+    edge_cnt += 1
+    weight += e[2]
     if edge_cnt == N - 2:
         break
 print(weight)
+
+
+# def union(a, b, w):
+#     global edge_cnt, weight
+#     a, b = find(a), find(b)
+#     if a != b:
+#         edge_cnt += 1
+#         weight += w
+#         if a < b:
+#             parents[b] = a
+#         else:
+#             parents[a] = b
+#
+# edge_cnt, weight = 0, 0
+# for e in edge:
+#     union(e[0], e[1], e[2])
+#     if edge_cnt == N - 2:
+#         break
+# print(weight)
