@@ -9,9 +9,9 @@ N, M = map(int, input().split())
 tree = [[] for _ in range(N+1)]
 
 for _ in range(N-1):
-    x, y, z = input().split()
-    tree[int(x)].append((int(y), int(z)))
-    tree[int(y)].append((int(x), int(z)))
+    x, y, z = map(int, input().split())
+    tree[x].append([y, z])
+    tree[y].append([x, z])
 
 
 def dfs(v,g, dist):
