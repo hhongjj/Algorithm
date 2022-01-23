@@ -9,9 +9,10 @@ input = sys.stdin.readline
 N, K = map(int, input().split())
 visited = [0] * 100001
 
-if N == K:
-    print(0)
-    print(N)
+if N >= K:
+    print(N-K)
+    for i in range(N, K-1, -1):
+        print(i, end=" ")
 else:
     lst = deque()
     lst.append([N, 0])
