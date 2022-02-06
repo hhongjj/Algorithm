@@ -1,7 +1,7 @@
 # G1 18809 Gaaaaaaaaaarden
 # https://www.acmicpc.net/problem/18809
 # 구현, 그래프 이론, 브루트포스 알고리즘, 그래프 탐색, 너비 우선 탐색, 시뮬레이션
-# 시간초과.... 
+# 시간초과....
 import sys, copy
 from itertools import permutations
 from collections import deque
@@ -39,7 +39,9 @@ def bfs(stack):
                 continue
             for d in range(4):
                 nx, ny = x + dx[d], y + dy[d]
-                if nx < 0 or nx >= N or ny < 0 or ny >= M or gd[nx][ny] <= 0 or gd[nx][ny] == num or visited[nx][ny] > run:
+                if nx < 0 or nx >= N or ny < 0 or ny >= M:
+                    continue
+                if gd[nx][ny] <= 0 or gd[nx][ny] == num or visited[nx][ny] > run:
                     continue
 
                 if gd[nx][ny] == 1 or gd[nx][ny] == 2:
@@ -58,6 +60,9 @@ def bfs(stack):
 while pos:
     temp = pos.pop()
     gd = copy.deepcopy(garden)
+    # gd = []
+    # for l in garden:
+    #     gd.append(l[:])
     g = G
     for x, y in temp:
         if g:
