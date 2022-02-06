@@ -20,19 +20,17 @@ for i in range(N):
                 pos.append([i, j])
     garden.append(temp)
 pos = list(permutations(pos, G+R))
-# print(pos)
+
 dx, dy = (-1, 1, 0, 0), (0, 0, -1, 1)
 def bfs(stack):
     cnt = 0
-    # print(stack)
     visited = [[0] * M for _ in range(N)]
     run = 0
     while stack:
-        temp = deque(copy.deepcopy(stack))
+        temp = deque(stack)
         stack = []
         run += 1
         while temp:
-
             x, y = temp.popleft()
             num = gd[x][y]
             if num == -1:
@@ -41,28 +39,20 @@ def bfs(stack):
                 nx, ny = x + dx[d], y + dy[d]
                 if nx < 0 or nx >= N or ny < 0 or ny >= M:
                     continue
-                if gd[nx][ny] <= 0 or gd[nx][ny] == num or visited[nx][ny] > run:
+                if gd[nx][ny] <= 0 or gd[nx][ny] == num or visited[nx][ny] > run or run > visited[nx][ny] > 0:
                     continue
-
                 if gd[nx][ny] == 1 or gd[nx][ny] == 2:
                     gd[nx][ny] = num
                     visited[nx][ny] = run
                     stack.append([nx, ny])
-                    # visited[nx][ny] += 1
-                # elif visited[nx][ny] == visited[x][y]:
                 elif visited[nx][ny] == run:
                     gd[nx][ny] = -1   # 꽃
                     cnt += 1
-    # print(visited)
     result.append(cnt)
-
 
 while pos:
     temp = pos.pop()
     gd = copy.deepcopy(garden)
-    # gd = []
-    # for l in garden:
-    #     gd.append(l[:])
     g = G
     for x, y in temp:
         if g:
@@ -71,8 +61,6 @@ while pos:
         else:
             gd[x][y] = 4
     bfs(deque(temp))
-    # print(gd)
-    # print(result)
 
 print(max(result))
 
