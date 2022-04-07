@@ -8,11 +8,11 @@ lst = list(list(map(int, input().split())) for _ in range(N))
 lst.sort(key=lambda x:x[1], reverse=True)
 score = [0]*(1001)
 for x, y in lst:
-    if score[x] < y:
+    if not score[x]:
         score[x] = y
     else:
         for i in range(x-1, 0, -1):
-            if score[i] < y:
+            if not score[i]:
                 score[i] = y
                 break
 
