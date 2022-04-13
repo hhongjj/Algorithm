@@ -8,27 +8,23 @@ input = sys.stdin.readline
 n, m = map(int, input().split())
 lst = list(map(int, input().split()))
 employee = [[] for _ in range(n+1)]
-for i, num in enumerate(lst[1:]):
+for i, num in enumerate(lst[1:]):           # 상사에게 직속 부하 저장
     employee[num].append(i+2)
 
 com = {}
-for _ in range(m):
+for _ in range(m):                          # dict에 직원 칭찬 중복 저장
     i, w = map(int, input().split())
     if i in com.keys():
-        com[i] += com[i] + w
+        com[i] += w
     else:
         com[i] = w
 
-for k, v in com.values():
-    print(k, v)
-
-# score = [0]*(n+1)
-# for _ in range(m):
-#     i, w = map(int, input().split())
-#     deq = deque()
-#     deq.append(i)
-#     while deq:
-#         tmp = deq.popleft()
-#         deq += employee[tmp]
-#         score[tmp] += w
-# print(*score[1:])
+score = [0]*(n+1)                    
+for k, v in com.items():                    # dfs 써서 직속 부하들 score에 점수 계속 더해주기
+    deq = deque()
+    deq.append(k)
+    while deq:
+        tmp = deq.popleft()
+        deq += employee[tmp]
+        score[tmp] += v
+print(*score[1:])
